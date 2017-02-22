@@ -10,7 +10,19 @@ PORT=""
 #functions
 HANDLE_VAGUE_INPUT=""
 function handle_vague_app(){
-	echo "[$HANDLE_VAGUE_INPUT] is not a correct app_name, please try again."
+	row=`grep $HANDLE_VAGUE_INPUT $JUMPER_HOME/env.setting |wc -l`
+	if [ $row -eq 0 ];
+	then
+		echo "[$HANDLE_VAGUE_INPUT] is not a correct app_name, please try again."
+	else
+		echo "More than 1 result found, Did you mean one of these?"	
+		for app_name in `grep $HANDLE_VAGUE_INPUT $JUMPER_HOME/env.setting |awk '{print $1}'`
+			do
+				echo "	$app_name"
+#cat $app_name |awk -F ' ' '{print $1}'
+			done
+	fi
+		
 	exit 1
 }
 
