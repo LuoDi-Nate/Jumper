@@ -10,7 +10,7 @@ PORT=""
 #functions
 HANDLE_VAGUE_INPUT=""
 function handle_vague_app(){
-	echo "$HANDLE_VAGUE_INPUT is not correct, please try again."
+	echo "[$HANDLE_VAGUE_INPUT] is not a correct app_name, please try again."
 	exit 1
 }
 
@@ -18,10 +18,17 @@ function do_nothing(){
 	echo " "
 }
 
+function syntax_hint(){
+	echo "use follow syntax:"
+	echo "		jump \${app_name}"
+	echo "		eg: jump orderdish-shop-web"
+}
+
 #check input, eg: jump orderdish-shop-web 
 if [ $# -ne 1 ];
 then
 	echo "wrong input!";
+	syntax_hint
 	exit 1;
 fi
 
