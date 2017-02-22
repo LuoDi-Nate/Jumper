@@ -56,8 +56,10 @@ echo "#!/usr/bin/expect" > $JUMPER_HOME/expect.sh
 echo "set timeout 30" >> $JUMPER_HOME/expect.sh
 echo "set passwd $PASSWD" >> $JUMPER_HOME/expect.sh
 echo "$CMD" >> $JUMPER_HOME/expect.sh
-echo "expect password" >> $JUMPER_HOME/expect.sh
-echo "send \"\$passwd\\r\"" >> $JUMPER_HOME/expect.sh
+echo "expect {" >> $JUMPER_HOME/expect.sh
+echo "\"yes/no\" {send \"yes\r\"; exp_continue}" >> $JUMPER_HOME/expect.sh
+echo "\"password\" {send \"\$passwd\r\"}" >> $JUMPER_HOME/expect.sh
+echo "}" >> $JUMPER_HOME/expect.sh
 echo "interact" >> $JUMPER_HOME/expect.sh
 
 chmod +x $JUMPER_HOME/expect.sh
