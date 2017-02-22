@@ -1,6 +1,7 @@
 #将jump.sh写入环境变量
 export JUMPER_HOME=`pwd`
 echo $JUMPER_HOME
+ alias jump=$JUMPER_HOME/jump.sh
 
 #写入bash
 echo "export JUMPER_HOME=$JUMPER_HOME" >> ~/.bash_profile
